@@ -59,7 +59,7 @@ public class Main {
         evaluateMaxHeapSort(large_reversed, "large, reversed");
     }
     public static void checkSorted() {
-        // check if sorted
+        // check if arrays are correctly sorted
         System.out.println(isSortedAscending(small_randomized));
         System.out.println(isSortedAscending(small_sorted));
         System.out.println(isSortedAscending(small_reversed));
@@ -73,17 +73,21 @@ public class Main {
         System.out.println(isSortedAscending(large_reversed));
     }
     public static void evaluateRandomShellSort(int[] array, String label) {
+        // evaluate running time and memory used by Random Shell Sort
+
+        // before
         System.gc();
         Runtime runtime = Runtime.getRuntime();
-
         double memoryBefore = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.nanoTime();
 
         RandomizedShellSort.randomizedShellSort(array);
 
+        // after
         long endTime = System.nanoTime();
         double memoryAfter = runtime.totalMemory() - runtime.freeMemory();
 
+        // calculations
         long elapsedTimeNano = endTime - startTime;
         double elapsedTimeMillis = (double) elapsedTimeNano / 1_000_000.0;
         double usedMemory = (memoryAfter - memoryBefore)/1024;
@@ -91,17 +95,21 @@ public class Main {
         System.out.println("Randomized Shell Sort - " + label + ": " + elapsedTimeMillis + ", " + usedMemory + " KB");
     }
     public static void evaluateMaxHeapSort(int[] array, String label) {
+        // evaluate running time and memory used by Max Heap Sort
+
+        // before
         System.gc();
         Runtime runtime = Runtime.getRuntime();
-
         double memoryBefore = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.nanoTime();
 
         MaxHeapSort.maxHeapSort(array);
 
+        // after
         long endTime = System.nanoTime();
         double memoryAfter = runtime.totalMemory() - runtime.freeMemory();
 
+        // calculations
         long elapsedTimeNano = endTime - startTime;
         double elapsedTimeMillis = (double) elapsedTimeNano / 1_000_000.0;
         double usedMemory = (memoryAfter - memoryBefore)/1024;
@@ -111,22 +119,26 @@ public class Main {
     public static void generateNumbers(int n, String s, long seed) {
         Random random = new Random(seed);
 
+        // generate randomized dataset and export to file
         int[] randomized = new int[n];
         for (int i = 0; i < n; i++) {
             randomized[i] = random.nextInt();
         }
         writeIntegersToFile(randomized, s + "_randomized.txt");
 
+        // generate sorted dataset and export to file
         int[] sorted = randomized.clone();
         Arrays.sort(sorted);
         writeIntegersToFile(sorted, s + "_sorted.txt");
 
+        // generate reverse-sorted dataset and export to file
         int[] reversed = new int[n];
         for (int i = 0; i < n; i++) {
             reversed[i] = sorted[n - 1 - i];
         }
         writeIntegersToFile(reversed, s + "_reversed.txt");
 
+        // assign generated datasets
         if (s.equals("small")){
             small_randomized = randomized.clone();
             small_sorted = sorted.clone();
@@ -146,6 +158,7 @@ public class Main {
         }
     }
     public static void writeIntegersToFile(int[] integerList, String filePath) {
+        // write all integers in the array to a file
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
             for (Integer number : integerList) {
                 bufferedWriter.write(number.toString());
@@ -157,6 +170,7 @@ public class Main {
         }
     }
     public static boolean isSortedAscending(int[] arr) {
+        // check if an array is sorted in an ascending manner
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             if (arr[i] > arr[i + 1]) {
@@ -166,6 +180,7 @@ public class Main {
         return true;
     }
     public static void printArray(int[] arr){
+        // print contents of an array
         for(int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
