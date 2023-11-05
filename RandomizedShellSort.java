@@ -20,14 +20,16 @@ public class RandomizedShellSort {
     }
 
     public static void permuteRandom(int[] a, MyRandom rand) {
+        // use the Knuth random permutation algorithm
         for (int i = 0; i < a.length; i++) {
             exchange(a, i, rand.nextInt(a.length - i) + i);
         }
     }
 
+    // compare-exchange two regions of length offset each
     public static void compareRegions(int[] a, int s, int t, int offset, MyRandom rand) {
-        int[] mate = new int[offset];
-        for (int count = 0; count < C; count++) {
+        int[] mate = new int[offset]; // index offset array
+        for (int count = 0; count < C; count++) { // do C region compare-exchanges
             for (int i = 0; i < offset; i++) mate[i] = i;
             permuteRandom(mate, rand); // comment this out to get a deterministic Shellsort
             for (int i = 0; i < offset; i++) {
