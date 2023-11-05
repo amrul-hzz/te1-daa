@@ -5,7 +5,7 @@ import java.util.*;
  * https://dl.acm.org/doi/pdf/10.1145/2049697.2049701?casa_token=Q3m5kUD8cXwAAAAA:W74e11vozONFwdODsiFG213H5SqLOzjM9a-bYPENfqnuP13NG5l3gZOMWCsKWgO1zKEZW8H47seNoA
  */
 public class RandomizedShellSort {
-    public static final int C = 4; // number of region compare-exchange repetitions
+    public static final int C = 1; // number of region compare-exchange repetitions
 
     public static void exchange(int[] a, int i, int j) {
         int temp = a[i];
@@ -29,7 +29,7 @@ public class RandomizedShellSort {
         int[] mate = new int[offset];
         for (int count = 0; count < C; count++) {
             for (int i = 0; i < offset; i++) mate[i] = i;
-            permuteRandom(mate, rand);
+            permuteRandom(mate, rand); // comment this out to get a deterministic Shellsort
             for (int i = 0; i < offset; i++) {
                 compareExchange(a, s + i, t + mate[i]);
             }
