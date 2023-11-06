@@ -1,4 +1,4 @@
 # te1-daa
-Nama: Amanda Nurul Izzah
-NPM: 2106634080
-Kode Asdos: 4
+Nama: Amanda Nurul Izzah <br>
+NPM: 2106634080 <br>
+Kode Asdos: 4 <br>
