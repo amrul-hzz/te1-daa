@@ -27,7 +27,7 @@ public class Main {
         generateNumbers(n_large,"large", seed);
 
         evaluate();
-//        checkSorted();
+//        checkSorted(); // uncomment to check if arrays are sorted correctly
 
     }
 
@@ -76,7 +76,7 @@ public class Main {
         // evaluate running time and memory used by Random Shell Sort
 
         // before
-        System.gc();
+        System.gc(); // run garbage collector first for more accurate results
         Runtime runtime = Runtime.getRuntime();
         double memoryBefore = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.nanoTime();
@@ -98,7 +98,7 @@ public class Main {
         // evaluate running time and memory used by Max Heap Sort
 
         // before
-        System.gc();
+        System.gc(); // run garbage collector first for more accurate results
         Runtime runtime = Runtime.getRuntime();
         double memoryBefore = runtime.totalMemory() - runtime.freeMemory();
         long startTime = System.nanoTime();
